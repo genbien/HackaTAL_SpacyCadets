@@ -8,3 +8,4 @@ PLUGINS = [
   'responder',
 ]
 
+ERRORS_TO = 'bot_errors'
