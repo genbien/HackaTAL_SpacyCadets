@@ -70,7 +70,7 @@ def send_sentence(message):
                 for keyGroup in groupDic.keys() :
                     for infoCountry in groupDic[keyGroup]:
                         if infoCountry['team'].lower() == nameCountry:
-                            print("- The " + questionCountry + " team has played " + (str)(infoCountry['playedGames']) + " games.")
+                            return "The " + questionCountry + " team has played " + (str)(infoCountry['playedGames']) + " games."
 
 
     def response_match_result(country):
@@ -83,8 +83,8 @@ def send_sentence(message):
                 for keyGroup in groupDic.keys() :
                     for infoCountry in groupDic[keyGroup]:
                         if infoCountry['team'].lower() == nameCountry:
-                            print("- The " + questionCountry + " team has made " + (str)(infoCountry['goals']) + " goals, scored " +
-                            (str)(infoCountry['points']) + " points, and its rank is " + (str)(infoCountry['rank']) + "/4 in group phase." )
+                            return "The " + questionCountry + " team has made " + (str)(infoCountry['goals']) + " goals, scored " + \
+                            (str)(infoCountry['points']) + " points, and its rank is " + (str)(infoCountry['rank']) + "/4 in group phase."
 
 
     # question = client.text_request("Is the German team good?")
@@ -104,7 +104,7 @@ def send_sentence(message):
         else:
             return(None)
     elif intent == 'match_result':
-        response_match_result(country)
+        return(response_match_result(country))
     elif intent == 'team_info':
-        response_team_info(country)    
+        return(response_team_info(country))
     
