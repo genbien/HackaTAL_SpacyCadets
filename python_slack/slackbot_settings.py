@@ -5,7 +5,7 @@ API_TOKEN = os.environ['SLACK_API_TOKEN']
 DEFAULT_REPLY = "Sorry but this does not look like a soccer to me."
 
 PLUGINS = [
-  'slackbot.plugins',
+  # 'slackbot.plugins',
   'gateway',
 ]
 

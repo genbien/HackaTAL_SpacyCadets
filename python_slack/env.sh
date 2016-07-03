@@ -1,4 +1,3 @@
-import os
 
 export REDIS_HOST="faulty.io"
 export REDIS_PASS="************"
