@@ -49,14 +49,21 @@ def __get_channel(channelname):
         if channel.get('name', None) == channelname:
             return id
 
+# Python3 compat
+try:
+  basestring
+except NameError:
+  basestring = str
+
 def handle_outgoing(message):
     print('Debug: outgoing', message);
     if (message and message['data']):
-        if (isinstance(message['data'], bytes)):
-            data = message['data'].decode("utf-8");
-        elif (isinstance(message['data'], str)):
+        if (isinstance(message['data'], basestring)):
             data = message['data']
-
+        elif (isinstance(message['data'], bytes)):
+            data = message['data'].decode("utf-8");
+        else:
+            return
         data = json.loads(data)
         chan = data['chan']
         text = data['text']
