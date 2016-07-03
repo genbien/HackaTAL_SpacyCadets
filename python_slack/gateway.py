@@ -22,6 +22,22 @@ def forward_to_gateway(message):
     chan = message.channel._client.channels[message.body['channel']][u'name']
 
     data = json.dumps({'user': user, 'text': text, 'chan': chan})
-    print('Debug:', data);
+    print('Debug: listen_to', data);
     r.publish('incoming', data);
 
+    message.react('+1')
+    # message.reply('```'+data+'```');
+
+
+# @respond_to('.*', re.IGNORECASE)
+# def forward_to_gateway(message):
+#     text = message.body['text']
+#     user = message.channel._client.users[message.body['user']][u'name']
+#     chan = message.channel._client.channels[message.body['channel']][u'name']
+
+#     data = json.dumps({'user': user, 'text': text, 'chan': chan})
+#     print('Debug: respond_to', data);
+#     r.publish('incoming', data);
+
+#     message.react('+1')
+#     message.reply('```'+data+'```');
