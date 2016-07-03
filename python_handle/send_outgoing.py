@@ -16,6 +16,5 @@ p.subscribe('outgoing')
 
 def re_send(message, chan):
 	user = 'cadet'
-	text = message
-	final_message = json.dumps({'user': user, 'text': text, 'chan': chan})
+	final_message = json.dumps({'user': user, 'text': message, 'chan': chan})
 	r.publish('outgoing', final_message)
