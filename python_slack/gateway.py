@@ -9,7 +9,7 @@ REDIS_HOST = os.environ['REDIS_HOST']
 REDIS_PASS = os.environ['REDIS_PASS']
 
 if REDIS_HOST is None or REDIS_PASS is None:
-  print("Environement variables REDIS_HOST and REDIS_PASS must be set")
+  print("Environment variables REDIS_HOST and REDIS_PASS must be set")
   sys.exit()
 
 r = redis.StrictRedis(host=REDIS_HOST, password=REDIS_PASS)
