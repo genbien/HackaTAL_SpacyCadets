@@ -21,7 +21,7 @@ def send_sentence(message):
 
     def get_intent(sent):
         return question.intent()
-    
+
     def good_team(country, competence):
         if competence == 1:
             ith = 'st'
@@ -32,7 +32,7 @@ def send_sentence(message):
         resp.append("the "+country.value.capitalize()+" team is really good!")
         resp.append("They're ranked "+str(competence)+ith+" in their group!")
         return " ".join(resp)
-    
+
     def bad_team(country, competence):
         if competence == 3:
             ith = 'rd'
@@ -43,11 +43,11 @@ def send_sentence(message):
         resp.append("the "+country.value.capitalize()+" team is okay.")
         resp.append("They're ranked "+str(competence)+ith+" in their group.")
         return " ".join(resp)
-    
-    
+
+
     def check_competence(country):
         questionCountry = country.value.lower()
-    
+
         for listCountry in countryTable:
             if (questionCountry in listCountry):
                 index = countryTable.index(listCountry)
@@ -57,10 +57,36 @@ def send_sentence(message):
                     for infoCountry in groupDic[keyGroup]:
                         if (infoCountry['team'].lower()==nameCountry):
                             rank = infoCountry['rank']
-    
+
         return rank
-    
-    
+
+    def response_team_info(country):
+        questionCountry = country.value.lower()
+        for listCountry in countryTable:
+            if (questionCountry in listCountry):
+                index = countryTable.index(listCountry)
+                nameCountry = countryTable[index][-1]
+                groupDic = response['standings']
+                for keyGroup in groupDic.keys() :
+                    for infoCountry in groupDic[keyGroup]:
+                        if infoCountry['team'].lower() == nameCountry:
+                            print("- The " + questionCountry + " team has played " + (str)(infoCountry['playedGames']) + " games.")
+
+
+    def response_match_result(country):
+        questionCountry = country.value.lower()
+        for listCountry in countryTable:
+            if (questionCountry in listCountry):
+                index = countryTable.index(listCountry)
+                nameCountry = countryTable[index][-1]
+                groupDic = response['standings']
+                for keyGroup in groupDic.keys() :
+                    for infoCountry in groupDic[keyGroup]:
+                        if infoCountry['team'].lower() == nameCountry:
+                            print("- The " + questionCountry + " team has made " + (str)(infoCountry['goals']) + " goals, scored " +
+                            (str)(infoCountry['points']) + " points, and its rank is " + (str)(infoCountry['rank']) + "/4 in group phase." )
+
+
     # question = client.text_request("Is the German team good?")
     question = client.text_request(question_str)
     
@@ -77,5 +103,8 @@ def send_sentence(message):
             return(bad_team(country, competence))
         else:
             return(None)
-    
+    elif intent == 'match_result':
+        response_match_result(country)
+    elif intent == 'team_info':
+        response_team_info(country)    
     
