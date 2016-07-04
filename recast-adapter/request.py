@@ -70,7 +70,7 @@ def send_sentence(message):
                 for keyGroup in groupDic.keys() :
                     for infoCountry in groupDic[keyGroup]:
                         if infoCountry['team'].lower() == nameCountry:
-                            return "The " + questionCountry + " team has played " + (str)(infoCountry['playedGames']) + " games."
+                            return "The " + questionCountry.capitalize() + " team has played " + (str)(infoCountry['playedGames']) + " games."
 
 
     def response_match_result(country):
@@ -83,7 +83,7 @@ def send_sentence(message):
                 for keyGroup in groupDic.keys() :
                     for infoCountry in groupDic[keyGroup]:
                         if infoCountry['team'].lower() == nameCountry:
-                            return "The " + questionCountry + " team has made " + (str)(infoCountry['goals']) + " goals, scored " + \
+                            return "The " + questionCountry.capitalize() + " team has made " + (str)(infoCountry['goals']) + " goals, scored " + \
                             (str)(infoCountry['points']) + " points, and its rank is " + (str)(infoCountry['rank']) + "/4 in group phase."
 
 
